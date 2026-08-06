@@ -23,6 +23,4 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# public images folder except .gitkeep
-public/images/*
-!public/images/.gitkeep
+
