@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const logoSourcePath = '/Users/francisco/.gemini/antigravity-ide/brain/e575553e-ee27-40e1-bd27-67cfb4ada112/media__1785982463847.png';
-const publicDir = './public';
+const publicDir = './public/images';
 const logoDestPath = path.join(publicDir, 'logo.png');
 
 async function processLogo() {

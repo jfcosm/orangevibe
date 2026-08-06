@@ -55,7 +55,7 @@ const otherLangLabel = languages[otherLang];
     <div class="mb-6 relative group select-none">
       <div class="absolute -inset-1 bg-gradient-to-r from-orange-400 to-amber-300 rounded-3xl blur-xl opacity-30 group-hover:opacity-40 transition-opacity duration-500"></div>
       <img 
-        src="/logo.png" 
+        src="/images/logo.png" 
         class="relative h-24 md:h-32 lg:h-36 object-contain drop-shadow-[0_4px_12px_rgba(234,88,12,0.1)]" 
         alt="OrangeVibe Logo" 
       />
@@ -97,7 +97,7 @@ const otherLangLabel = languages[otherLang];
       <div class="relative w-full rounded-2xl overflow-hidden border border-white/30 bg-slate-950 shadow-inner mb-5 aspect-[2/1] flex items-center justify-center group select-none">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.6))] z-10"></div>
         <img 
-          src="/waveform.png" 
+          src="/images/waveform.png" 
           class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
           alt="Flow-state wave" 
         />
@@ -194,7 +194,7 @@ const otherLangLabel = languages[otherLang];
         <!-- Fintech Phone -->
         <div class="flex flex-col items-center flex-1 group">
           <div class="relative overflow-hidden rounded-xl shadow-md border border-white/30 bg-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-2">
-            <img src="/mobile-fintech.png" class="w-full h-auto object-cover" alt="Fintech Portal" />
+            <img src="/images/mobile-fintech.png" class="w-full h-auto object-cover" alt="Fintech Portal" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
           </div>
           <span class="text-[8px] md:text-[9px] font-black text-gray-800 mt-3 text-center tracking-wider block leading-none">
@@ -205,7 +205,7 @@ const otherLangLabel = languages[otherLang];
         <!-- SaaS Phone (Floating slightly higher) -->
         <div class="flex flex-col items-center flex-1 group -translate-y-2 md:-translate-y-3">
           <div class="relative overflow-hidden rounded-xl shadow-xl border border-white/40 bg-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-2">
-            <img src="/mobile-saas.png" class="w-full h-auto object-cover" alt="SaaS Platform" />
+            <img src="/images/mobile-saas.png" class="w-full h-auto object-cover" alt="SaaS Platform" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
           </div>
           <span class="text-[8px] md:text-[9px] font-black text-orange-600 mt-3 text-center tracking-wider block leading-none">
@@ -216,7 +216,7 @@ const otherLangLabel = languages[otherLang];
         <!-- E-Commerce Phone -->
         <div class="flex flex-col items-center flex-1 group">
           <div class="relative overflow-hidden rounded-xl shadow-md border border-white/30 bg-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-2">
-            <img src="/mobile-ecommerce.png" class="w-full h-auto object-cover" alt="E-Commerce Site" />
+            <img src="/images/mobile-ecommerce.png" class="w-full h-auto object-cover" alt="E-Commerce Site" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
           </div>
           <span class="text-[8px] md:text-[9px] font-black text-gray-800 mt-3 text-center tracking-wider block leading-none">
@@ -229,6 +229,45 @@ const otherLangLabel = languages[otherLang];
 
   </div>
 
+  <!-- About Us Section -->
+  <div class="w-full flex flex-col gap-6">
+    <div class="text-center mt-4">
+      <h2 class="text-xl md:text-2xl font-black text-gray-900 tracking-tight flex items-center justify-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+        {t('about.title')}
+      </h2>
+      <p class="text-[10px] text-orange-600 font-bold uppercase tracking-widest mt-1">
+        {t('about.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Founder 1: Manthan Patel -->
+      <GlassCard class="p-6 flex flex-col md:flex-row items-center gap-6 bg-white/20 hover:-translate-y-1 transition-all duration-300">
+        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/50 shadow-md shrink-0 select-none">
+          <img src="/images/manthan.png" class="w-full h-full object-cover" alt="Manthan Patel" />
+        </div>
+        <div class="text-center md:text-left flex-1">
+          <h3 class="text-base font-bold text-gray-900">{t('about.manthan.name')}</h3>
+          <p class="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-2">{t('about.manthan.role')}</p>
+          <p class="text-xs text-gray-600 leading-relaxed">{t('about.manthan.bio')}</p>
+        </div>
+      </GlassCard>
+
+      <!-- Founder 2: Francisco Carle -->
+      <GlassCard class="p-6 flex flex-col md:flex-row items-center gap-6 bg-white/20 hover:-translate-y-1 transition-all duration-300">
+        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/50 shadow-md shrink-0 select-none">
+          <img src="/images/francisco.png" class="w-full h-full object-cover" alt="Francisco Carle" />
+        </div>
+        <div class="text-center md:text-left flex-1">
+          <h3 class="text-base font-bold text-gray-900">{t('about.francisco.name')}</h3>
+          <p class="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-2">{t('about.francisco.role')}</p>
+          <p class="text-xs text-gray-600 leading-relaxed">{t('about.francisco.bio')}</p>
+        </div>
+      </GlassCard>
+    </div>
+  </div>
+
   <!-- C. Footer Section -->
   <GlassCard class="w-full p-6 md:p-8 bg-white/20">
     <div class="flex flex-col gap-6">
@@ -237,7 +276,7 @@ const otherLangLabel = languages[otherLang];
         
         <!-- Footer Left: Mini Logo -->
         <div class="flex items-center gap-3">
-          <img src="/logo.png" class="h-10 object-contain" alt="OrangeVibe Mini Logo" />
+          <img src="/images/logo.png" class="h-10 object-contain" alt="OrangeVibe Mini Logo" />
           <div class="text-left border-l border-gray-300/40 pl-3">
             <p class="text-xs font-black tracking-widest text-gray-900">ORANGEVIBE</p>
             <p class="text-[9px] text-orange-600 tracking-wider font-bold uppercase">{t('hero.tagline')}</p>
