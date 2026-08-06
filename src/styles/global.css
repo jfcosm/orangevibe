@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  
+  --shadow-glass: 0 8px 32px 0 rgba(234, 88, 12, 0.15);
+  --shadow-inner-glass: inset 0 2px 4px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Base custom styles to enhance the frosted plastic aesthetic */
+@layer base {
+  body {
+    background-color: #f8fafc; /* bg-slate-50 */
+    font-family: var(--font-sans);
+    color: #374151; /* text-gray-700 */
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: #111827; /* text-gray-900 */
+  }
+}

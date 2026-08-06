@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  lang: 'en' | 'es';
+}
+
+const { title, lang } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={lang === 'es' ? 'OrangeVibe - Estudio de desarrollo de software y Vibe Coding. Creamos productos digitales de alto impacto.' : 'OrangeVibe - Software development studio and Vibe Coding. We build high-impact digital products.'} />
+    
+    <!-- Google Fonts: Outfit (headings) & Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="relative min-h-screen bg-slate-50 text-gray-700 font-sans antialiased overflow-x-hidden selection:bg-orange-500 selection:text-white">
+    
+    <!-- Ambient Background Glow Spheres for Glassmorphism pop -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <!-- Top Left Glow -->
+      <div class="absolute -top-[10%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-gradient-to-br from-orange-300 via-amber-200 to-transparent blur-[120px] opacity-25"></div>
+      
+      <!-- Center Orange Glow -->
+      <div class="absolute top-[35%] left-[25%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-amber-300 via-orange-400 to-transparent blur-[140px] opacity-15"></div>
+      
+      <!-- Bottom Right Glow -->
+      <div class="absolute -bottom-[10%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tl from-rose-300 via-orange-300 to-transparent blur-[130px] opacity-25"></div>
+      
+      <!-- Subtle Decorative Star/Spark Grid in Background -->
+      <div class="absolute inset-0 bg-[radial-gradient(#ea580c_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.03]"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-between p-4 md:p-8 lg:p-12 max-w-7xl mx-auto gap-8">
+      <slot />
+    </div>
+  </body>
+</html>

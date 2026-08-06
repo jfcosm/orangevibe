@@ -1,0 +1,41 @@
+---
+interface Props {
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+  id?: string;
+}
+
+const { href, class: className = '', type = 'button', id } = Astro.props;
+const Element = href ? 'a' : 'button';
+---
+
+<Element
+  id={id}
+  href={href}
+  type={href ? undefined : type}
+  class={`relative inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 text-white font-bold text-xs md:text-sm tracking-widest uppercase shadow-[0_4px_20px_0_rgba(234,88,12,0.4)] hover:shadow-[0_8px_30px_0_rgba(234,88,12,0.6)] active:scale-95 hover:scale-[1.02] cursor-pointer transition-all duration-300 relative overflow-hidden group border border-orange-400/20 select-none ${className}`}
+>
+  <!-- Inner shadow for a 3D physical plastic button look -->
+  <div class="absolute inset-0 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),_inset_0_-2px_4px_rgba(0,0,0,0.2)] pointer-events-none rounded-full"></div>
+
+  <!-- Glossy shine animation on hover -->
+  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:animate-shine pointer-events-none"></div>
+  
+  <span class="relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] flex items-center gap-2">
+    <slot />
+  </span>
+</Element>
+
+<style>
+  /* Custom keyframe animation for the shine effect */
+  @keyframes shine {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .group:hover .group-hover\:animate-shine {
+    animation: shine 0.8s ease-in-out;
+  }
+</style>

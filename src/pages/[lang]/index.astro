@@ -1,0 +1,387 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GlassCard from '../../components/GlassCard.astro';
+import GlassButton from '../../components/GlassButton.astro';
+import { ui, languages } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'en' | 'es' };
+const t = (key: keyof typeof ui['en']) => {
+  return ui[lang][key] || ui['es'][key];
+};
+
+const otherLang = lang === 'es' ? 'en' : 'es';
+const otherLangLabel = languages[otherLang];
+---
+
+<Layout title="OrangeVibe | IDEAS + ENERGY" lang={lang}>
+  
+  <!-- Floating Language Switcher Capsule -->
+  <div class="fixed top-4 right-4 z-50 flex items-center bg-white/30 backdrop-blur-xl border border-white/50 rounded-full p-1 shadow-lg shadow-orange-500/5">
+    <div class="relative flex items-center gap-1">
+      <a 
+        href="/es/" 
+        class={`px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 ${
+          lang === 'es' 
+            ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md' 
+            : 'text-gray-700 hover:text-orange-600'
+        }`}
+      >
+        ES
+      </a>
+      <a 
+        href="/en/" 
+        class={`px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 ${
+          lang === 'en' 
+            ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md' 
+            : 'text-gray-700 hover:text-orange-600'
+        }`}
+      >
+        EN
+      </a>
+    </div>
+  </div>
+
+  <!-- A. Hero Section -->
+  <GlassCard class="w-full flex flex-col items-center justify-center p-8 md:p-14 lg:p-16 text-center bg-white/20 relative">
+    
+    <!-- Center Glassy Logo -->
+    <div class="mb-6 relative group select-none">
+      <div class="absolute -inset-1 bg-gradient-to-r from-orange-400 to-amber-300 rounded-3xl blur-xl opacity-30 group-hover:opacity-40 transition-opacity duration-500"></div>
+      <img 
+        src="/logo.png" 
+        class="relative h-24 md:h-32 lg:h-36 object-contain drop-shadow-[0_4px_12px_rgba(234,88,12,0.1)]" 
+        alt="OrangeVibe Logo" 
+      />
+    </div>
+
+    <!-- Tagline -->
+    <p class="text-[10px] md:text-xs font-black tracking-[0.3em] text-orange-600 uppercase mb-3">
+      {t('hero.tagline')}
+    </p>
+
+    <!-- H1 Headline -->
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.1] mb-5 max-w-4xl">
+      {t('hero.title')}
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-sm md:text-base text-gray-700 max-w-2xl leading-relaxed mb-8">
+      {t('hero.subtitle')}
+    </p>
+
+    <!-- CTA Button -->
+    <GlassButton id="cta-button">
+      {t('hero.cta')}
+    </GlassButton>
+    
+  </GlassCard>
+
+  <!-- B. Grid Content (Mid-Section) -->
+  <div class="w-full grid grid-cols-1 lg:grid-cols-[1.4fr_1.4fr_1.6fr] gap-6 items-stretch">
+    
+    <!-- Left Panel: WHAT IS VIBE CODING? -->
+    <GlassCard class="flex flex-col p-6 md:p-8 bg-white/20">
+      <h2 class="text-lg md:text-xl font-bold tracking-tight text-gray-900 mb-4 flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+        {t('what.title')}
+      </h2>
+      
+      <!-- Waveform graphic cropped from mockup -->
+      <div class="relative w-full rounded-2xl overflow-hidden border border-white/30 bg-slate-950 shadow-inner mb-5 aspect-[2/1] flex items-center justify-center group select-none">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.6))] z-10"></div>
+        <img 
+          src="/waveform.png" 
+          class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
+          alt="Flow-state wave" 
+        />
+        <div class="absolute top-2 left-3 font-mono text-[8px] text-orange-400/60 pointer-events-none select-none">
+          flow_state_engaged: true
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-700 leading-relaxed mt-auto">
+        {t('what.text')}
+      </p>
+    </GlassCard>
+
+    <!-- Center Panel: Services Grid -->
+    <div class="grid grid-cols-2 gap-4">
+      
+      <!-- Service 1: Web Development -->
+      <GlassCard class="p-5 flex flex-col justify-between bg-white/25 hover:-translate-y-1 transition-transform duration-300">
+        <div class="mb-4">
+          <!-- Web Icon -->
+          <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 shadow-[inset_0_2px_4px_rgba(255,255,255,0.7)] border border-orange-200/50">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-gray-900 mb-1">{t('services.web.title')}</h3>
+          <p class="text-[11px] md:text-xs text-gray-600 leading-normal">{t('services.web.desc')}</p>
+        </div>
+      </GlassCard>
+
+      <!-- Service 2: Mobile Apps -->
+      <GlassCard class="p-5 flex flex-col justify-between bg-white/25 hover:-translate-y-1 transition-transform duration-300">
+        <div class="mb-4">
+          <!-- Mobile Icon -->
+          <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 shadow-[inset_0_2px_4px_rgba(255,255,255,0.7)] border border-orange-200/50">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-gray-900 mb-1">{t('services.mobile.title')}</h3>
+          <p class="text-[11px] md:text-xs text-gray-600 leading-normal">{t('services.mobile.desc')}</p>
+        </div>
+      </GlassCard>
+
+      <!-- Service 3: AI & Machine Learning -->
+      <GlassCard class="p-5 flex flex-col justify-between bg-white/25 hover:-translate-y-1 transition-transform duration-300">
+        <div class="mb-4">
+          <!-- AI Icon -->
+          <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 shadow-[inset_0_2px_4px_rgba(255,255,255,0.7)] border border-orange-200/50">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75c0 .414-.168.789-.439 1.061L7.5 12.622M14.25 9.75c0 .414.168.789.439 1.061l1.811 1.811M12 9.75V3.75" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-gray-900 mb-1">{t('services.ai.title')}</h3>
+          <p class="text-[11px] md:text-xs text-gray-600 leading-normal">{t('services.ai.desc')}</p>
+        </div>
+      </GlassCard>
+
+      <!-- Service 4: UI/UX & Branding -->
+      <GlassCard class="p-5 flex flex-col justify-between bg-white/25 hover:-translate-y-1 transition-transform duration-300">
+        <div class="mb-4">
+          <!-- Design Icon -->
+          <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 shadow-[inset_0_2px_4px_rgba(255,255,255,0.7)] border border-orange-200/50">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-2.22 4.582 3 3 0 004.89-.082l.29-.387a3.375 3.375 0 015.32 0l.29.387a3 3 0 004.89.082 3 3 0 00-2.22-4.582M12 11.25a3.375 3.375 0 100-6.75 3.375 3.375 0 000 6.75z" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-gray-900 mb-1">{t('services.ui.title')}</h3>
+          <p class="text-[11px] md:text-xs text-gray-600 leading-normal">{t('services.ui.desc')}</p>
+        </div>
+      </GlassCard>
+
+    </div>
+
+    <!-- Right Panel: VIBE IN ACTION (Mobile mockups showcase) -->
+    <GlassCard class="flex flex-col p-6 md:p-8 bg-white/20">
+      <h2 class="text-lg md:text-xl font-bold tracking-tight text-gray-900 mb-6 flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+        {t('action.title')}
+      </h2>
+
+      <!-- Phone containers side by side -->
+      <div class="flex justify-between items-end gap-2 md:gap-3 mt-auto mb-2 w-full">
+        
+        <!-- Fintech Phone -->
+        <div class="flex flex-col items-center flex-1 group">
+          <div class="relative overflow-hidden rounded-xl shadow-md border border-white/30 bg-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-2">
+            <img src="/mobile-fintech.png" class="w-full h-auto object-cover" alt="Fintech Portal" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+          <span class="text-[8px] md:text-[9px] font-black text-gray-800 mt-3 text-center tracking-wider block leading-none">
+            {t('action.fintech')}
+          </span>
+        </div>
+
+        <!-- SaaS Phone (Floating slightly higher) -->
+        <div class="flex flex-col items-center flex-1 group -translate-y-2 md:-translate-y-3">
+          <div class="relative overflow-hidden rounded-xl shadow-xl border border-white/40 bg-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-2">
+            <img src="/mobile-saas.png" class="w-full h-auto object-cover" alt="SaaS Platform" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+          <span class="text-[8px] md:text-[9px] font-black text-orange-600 mt-3 text-center tracking-wider block leading-none">
+            {t('action.saas')}
+          </span>
+        </div>
+
+        <!-- E-Commerce Phone -->
+        <div class="flex flex-col items-center flex-1 group">
+          <div class="relative overflow-hidden rounded-xl shadow-md border border-white/30 bg-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-2">
+            <img src="/mobile-ecommerce.png" class="w-full h-auto object-cover" alt="E-Commerce Site" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+          <span class="text-[8px] md:text-[9px] font-black text-gray-800 mt-3 text-center tracking-wider block leading-none">
+            {t('action.ecommerce')}
+          </span>
+        </div>
+
+      </div>
+    </GlassCard>
+
+  </div>
+
+  <!-- C. Footer Section -->
+  <GlassCard class="w-full p-6 md:p-8 bg-white/20">
+    <div class="flex flex-col gap-6">
+      <!-- Top Row -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Footer Left: Mini Logo -->
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" class="h-10 object-contain" alt="OrangeVibe Mini Logo" />
+          <div class="text-left border-l border-gray-300/40 pl-3">
+            <p class="text-xs font-black tracking-widest text-gray-900">ORANGEVIBE</p>
+            <p class="text-[9px] text-orange-600 tracking-wider font-bold uppercase">{t('hero.tagline')}</p>
+          </div>
+        </div>
+
+        <!-- Footer Center: Call to Action -->
+        <div class="text-center">
+          <p class="text-sm font-extrabold tracking-wider text-gray-900 uppercase">
+            {t('footer.center')}
+          </p>
+        </div>
+
+        <!-- Footer Right: Contact Info -->
+        <div class="text-center md:text-right">
+          <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">{t('footer.contact')}</p>
+          <a 
+            href="mailto:hello@orangevibe.dev" 
+            class="text-xs md:text-sm font-black text-gray-800 hover:text-orange-600 transition-colors duration-300"
+          >
+            {t('footer.team')}
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Divider -->
+      <hr class="border-gray-300/20" />
+
+      <!-- Bottom Row: Addresses -->
+      <div class="flex flex-col sm:flex-row justify-between text-[10px] text-gray-500 gap-3 w-full text-center sm:text-left leading-relaxed">
+        <div>
+          <span class="font-bold text-gray-800 uppercase tracking-wider block sm:inline sm:mr-1">Chile:</span>
+          Teniente Merino 2058, La Serena, Chile.
+        </div>
+        <div class="sm:text-right">
+          <span class="font-bold text-gray-800 uppercase tracking-wider block sm:inline sm:mr-1">Ireland:</span>
+          Stilorgan Road, 3-6 Charmont Street, Dublin 6, Dublin.
+        </div>
+      </div>
+    </div>
+  </GlassCard>
+
+  <!-- Interactive Contact Dialog (Modal) -->
+  <dialog 
+    id="contact-dialog" 
+    class="p-0 bg-transparent outline-none border-none max-w-lg w-full rounded-3xl overflow-visible backdrop:bg-slate-900/40 backdrop:backdrop-blur-sm"
+  >
+    <GlassCard class="p-8 shadow-2xl bg-white/95 border border-white/50 relative overflow-visible">
+      <!-- Close Button -->
+      <button 
+        id="close-dialog"
+        class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white border border-gray-200 text-gray-500 hover:text-orange-600 flex items-center justify-center shadow-md active:scale-95 transition-all cursor-pointer z-55"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="text-center mb-6">
+        <h3 class="text-xl font-black text-gray-900 mb-2">
+          {lang === 'es' ? 'Comienza tu Proyecto Vibe' : 'Start Your Vibe Project'}
+        </h3>
+        <p class="text-xs text-gray-600 leading-relaxed">
+          {lang === 'es' 
+            ? 'Cuéntanos tu idea. Te responderemos más rápido de lo que esperas para hacerla realidad.' 
+            : 'Tell us about your idea. We will respond faster than you expect to make it a reality.'}
+        </p>
+      </div>
+
+      <form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); alert('Vibe received! We will talk soon.'); document.getElementById('contact-dialog').close();">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
+            {lang === 'es' ? 'Tu Nombre' : 'Your Name'}
+          </label>
+          <input 
+            type="text" 
+            required 
+            placeholder={lang === 'es' ? 'Ej. Francisco Carle' : 'e.g. Francisco Carle'}
+            class="w-full px-4 py-2.5 bg-slate-100/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-orange-500 focus:bg-white transition-all"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
+            {lang === 'es' ? 'Tu Correo' : 'Your Email'}
+          </label>
+          <input 
+            type="email" 
+            required 
+            placeholder="ejemplo@correo.com"
+            class="w-full px-4 py-2.5 bg-slate-100/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-orange-500 focus:bg-white transition-all"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
+            {lang === 'es' ? 'Detalles de la Idea' : 'Idea Details'}
+          </label>
+          <textarea 
+            required 
+            rows="3" 
+            placeholder={lang === 'es' ? 'Cuéntanos un poco sobre tu app, plataforma o sitio...' : 'Tell us a bit about your app, platform or site...'}
+            class="w-full px-4 py-2.5 bg-slate-100/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-orange-500 focus:bg-white transition-all resize-none"
+          ></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-center">
+          <GlassButton type="submit" class="w-full">
+            {lang === 'es' ? 'Enviar Vibras' : 'Send Vibes'}
+          </GlassButton>
+        </div>
+      </form>
+    </GlassCard>
+  </dialog>
+
+  <!-- Interactive script to manage the dialog -->
+  <script is:inline>
+    const ctaBtn = document.getElementById('cta-button');
+    const dialog = document.getElementById('contact-dialog');
+    const closeBtn = document.getElementById('close-dialog');
+
+    if (ctaBtn && dialog && closeBtn) {
+      ctaBtn.addEventListener('click', () => {
+        dialog.showModal();
+      });
+
+      closeBtn.addEventListener('click', () => {
+        dialog.close();
+      });
+
+      // Close dialog when clicking outside the container
+      dialog.addEventListener('click', (e) => {
+        const dialogDimensions = dialog.getBoundingClientRect();
+        if (
+          e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom
+        ) {
+          dialog.close();
+        }
+      });
+    }
+  </script>
+
+</Layout>
