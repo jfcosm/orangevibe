@@ -249,28 +249,32 @@ const otherLangLabel = languages[otherLang];
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Founder 1: Manthan Patel -->
-      <GlassCard class="p-6 flex flex-col md:flex-row items-center gap-6 bg-white/20 hover:-translate-y-1 transition-all duration-300">
-        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/50 shadow-md shrink-0 select-none">
-          <img src="/images/manthan.png" class="w-full h-full object-cover" alt="Manthan Patel" />
-        </div>
-        <div class="text-center md:text-left flex-1">
-          <h3 class="text-base font-bold text-gray-900">{t('about.manthan.name')}</h3>
-          <p class="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-2">{t('about.manthan.role')}</p>
-          <p class="text-xs text-gray-600 leading-relaxed">{t('about.manthan.bio')}</p>
-        </div>
-      </GlassCard>
+      <a href={`/${lang}/about/#manthan`} class="block group/card">
+        <GlassCard class="p-6 flex flex-col md:flex-row items-center gap-6 bg-white/20 hover:-translate-y-1 group-hover/card:bg-white/30 transition-all duration-300">
+          <div class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/50 shadow-md shrink-0 select-none group-hover/card:border-orange-400/50 transition-all">
+            <img src="/images/manthan.png" class="w-full h-full object-cover" alt="Manthan Patel" />
+          </div>
+          <div class="text-center md:text-left flex-1">
+            <h3 class="text-base font-bold text-gray-900 group-hover/card:text-orange-600 transition-colors">{t('about.manthan.name')}</h3>
+            <p class="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-2">{t('about.manthan.role')}</p>
+            <p class="text-xs text-gray-600 leading-relaxed">{t('about.manthan.bio')}</p>
+          </div>
+        </GlassCard>
+      </a>
 
       <!-- Founder 2: Francisco Carle -->
-      <GlassCard class="p-6 flex flex-col md:flex-row items-center gap-6 bg-white/20 hover:-translate-y-1 transition-all duration-300">
-        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/50 shadow-md shrink-0 select-none">
-          <img src="/images/francisco.png" class="w-full h-full object-cover" alt="Francisco Carle" />
-        </div>
-        <div class="text-center md:text-left flex-1">
-          <h3 class="text-base font-bold text-gray-900">{t('about.francisco.name')}</h3>
-          <p class="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-2">{t('about.francisco.role')}</p>
-          <p class="text-xs text-gray-600 leading-relaxed">{t('about.francisco.bio')}</p>
-        </div>
-      </GlassCard>
+      <a href={`/${lang}/about/#francisco`} class="block group/card">
+        <GlassCard class="p-6 flex flex-col md:flex-row items-center gap-6 bg-white/20 hover:-translate-y-1 group-hover/card:bg-white/30 transition-all duration-300">
+          <div class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/50 shadow-md shrink-0 select-none group-hover/card:border-orange-400/50 transition-all">
+            <img src="/images/francisco.png" class="w-full h-full object-cover" alt="Francisco Carle" />
+          </div>
+          <div class="text-center md:text-left flex-1">
+            <h3 class="text-base font-bold text-gray-900 group-hover/card:text-orange-600 transition-colors">{t('about.francisco.name')}</h3>
+            <p class="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-2">{t('about.francisco.role')}</p>
+            <p class="text-xs text-gray-600 leading-relaxed">{t('about.francisco.bio')}</p>
+          </div>
+        </GlassCard>
+      </a>
     </div>
   </div>
 

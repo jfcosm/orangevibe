@@ -1,0 +1,348 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import GlassCard from '../../../components/GlassCard.astro';
+import { ui } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'en' | 'es' };
+const t = (key: keyof typeof ui['en']) => {
+  return ui[lang][key] || ui['es'][key];
+};
+
+// founders CV data structured locally for clean rendering and localization
+const founders = {
+  francisco: {
+    name: 'Francisco Carle',
+    role: lang === 'es' ? 'Co-Fundador y Director Creativo' : 'Co-Founder & Creative Director',
+    website: 'www.franciscocarle.com',
+    avatar: '/images/francisco.png',
+    mantra: lang === 'es' 
+      ? 'Fomentar la agilidad, la empatía y la mejora continua en el desarrollo de software.' 
+      : 'Empowering teams to deliver meaningful results through agility, empathy, and continuous improvement.',
+    summary: lang === 'es'
+      ? 'Ingeniero Civil Industrial y Scrum Master Certificado con más de 7 años de experiencia liderando equipos multidisciplinarios en retail, banca y energía. Combina habilidades de desarrollo Full Stack en Python con un liderazgo facilitador y empático.'
+      : 'Certified Senior Scrum Master, Agile Coach, and Full Stack Python Developer with 7+ years of experience leading multidisciplinary software teams. Expert in driving digital transformation and team self-organization.',
+    experience: [
+      {
+        company: 'Thomson Reuters',
+        role: lang === 'es' ? 'Desarrollador Python Full Stack' : 'Full Stack Python Developer',
+        period: '2025 - Present',
+        achievements: lang === 'es' 
+          ? [
+              'Colabora en el diseño y desarrollo de arquitecturas modulares de automatización para la extracción inteligente de documentos reguladores.',
+              'Mantiene rastreadores web robustos basados en Python, SQLAlchemy y bases de datos SQL.'
+            ]
+          : [
+              'Contributes to design and development of modular automation architecture for regulatory document intelligent extraction.',
+              'Maintains robust Python-based web crawlers integrated with SQLAlchemy and SQL databases.'
+            ]
+      },
+      {
+        company: 'Onikom Latam',
+        role: 'Senior Scrum Master',
+        period: '2024',
+        achievements: lang === 'es' 
+          ? [
+              'Lideró más de 6 equipos ágiles distribuidos en el desarrollo de agentes de IA y plataformas SaaS.',
+              'Mejoró la previsibilidad de entrega en un 30% a través de métricas y coaching activo.'
+            ]
+          : [
+              'Led 6+ distributed Agile teams delivering AI-powered agents, mobile apps, and SaaS platforms.',
+              'Improved on-time delivery metrics by 30% through active mentoring and coaching.'
+            ]
+      },
+      {
+        company: 'SOHO (Gasco)',
+        role: 'Agile Coach',
+        period: '2022 - 2023',
+        achievements: lang === 'es' 
+          ? [
+              'Guió la transformación ágil en la distribuidora de energía Gasco, entrenando a líderes y equipos.',
+              'Diseñó talleres de Design Thinking que aumentaron los indicadores de innovación del equipo en un 25%.'
+            ]
+          : [
+              'Guided Agile transformation for Gasco energy company, coaching leadership and development teams.',
+              'Designed and led Design Thinking workshops that boosted innovation outputs by approximately 25%.'
+            ]
+      },
+      {
+        company: 'ACL (Falabella Financiero)',
+        role: lang === 'es' ? 'Analista de Negocio / Facilitador Ágil' : 'Business Analyst / Agile Facilitator',
+        period: '2021 - 2022',
+        achievements: lang === 'es' 
+          ? [
+              'Coordinó equipos distribuidos en 5 países para optimizar los flujos de integración técnica.',
+              'Aumentó la predictibilidad en un 20% mediante una priorización clara y refinamiento del backlog.'
+            ]
+          : [
+              'Coordinated between technical integration and channels teams across 5 countries.',
+              'Improved project delivery predictability by 20% through scope clarification and ceremony facilitation.'
+            ]
+      },
+      {
+        company: 'Cencosud Scotiabank',
+        role: 'Scrum Master / Business Partner',
+        period: '2018 - 2021',
+        achievements: lang === 'es' 
+          ? [
+              'Dirigió proyectos híbridos y ágiles en áreas de Riesgo, Prevención de Lavado de Dinero y Finanzas.',
+              'Guió a un equipo de 10 analistas y desarrolladores, subiendo la tasa de éxito de sprints del 70% al 92%.'
+            ]
+          : [
+              'Managed hybrid and Agile projects across Product, Risk, AML, and Finance departments.',
+              'Led a team of 10+ developers and analysts, raising sprint completion rate from 70% to 92%.'
+            ]
+      }
+    ],
+    education: lang === 'es'
+      ? [
+          'Ingeniería Civil Industrial — Universidad de La Serena',
+          'Ingeniería de Ejecución en Computación (Traspaso) — Universidad de Santiago de Chile',
+          'Certificación Scrum Master (PSM I) — Scrum.org',
+          'Especialista en Design Thinking — Hasso Plattner Institute (HPI)'
+        ]
+      : [
+          'Industrial Civil Engineering — Universidad de La Serena',
+          'Computer Engineering (Transfer) — Universidad de Santiago de Chile',
+          'Professional Scrum Master I (PSM I) — Scrum.org',
+          'Mastering Design Thinking in Organizations — Hasso Plattner Institute (HPI)'
+        ],
+    skills: ['Python', 'Django', 'SQL Server', 'SQLAlchemy', 'Agile Leadership', 'Scrum / Kanban', 'Design Thinking', 'AI Integration'],
+    languages: lang === 'es'
+      ? ['Español (Nativo)', 'Inglés (C2 Proficiente - EF SET)', 'Italiano (Básico)']
+      : ['Spanish (Native)', 'English (C2 Proficient - EF SET)', 'Italian (Basic)']
+  },
+  manthan: {
+    name: 'Manthan Patel',
+    role: lang === 'es' ? 'Co-Fundador y Director de Operaciones (CTO)' : 'Co-Founder & CTO',
+    avatar: '/images/manthan.png',
+    mantra: lang === 'es'
+      ? '"Aprender al máximo, compartir abiertamente, ser humilde y marcar la diferencia".'
+      : '"Learn fully, share openly, be humble and make a difference".',
+    summary: lang === 'es'
+      ? 'Analista de Negocios y Coordinador de Proyectos con más de 4 años de trayectoria en operaciones y consultoría de procesos comerciales en compañías de tecnología global como Accenture. Posee dos maestrías en Irlanda (Liderazgo y Gestión, y Resolución de Disputas).'
+      : 'Business Analyst, Project Coordinator, and Operations Specialist with 4+ years of experience in business process consulting for global clients like Accenture. Master’s graduate in Leadership and Conflict Resolution.',
+    experience: [
+      {
+        company: 'Accenture',
+        role: lang === 'es' ? 'Analista Senior de Operaciones' : 'Senior Operations Analyst',
+        period: '2019 - 2023',
+        achievements: lang === 'es'
+          ? [
+              'Trabajó con clientes líderes globales mejorando la calidad de operaciones y seguridad en medios digitales.',
+              'Facilitó la resolución empática y oportuna de incidencias complejas y gestionó flujos de trabajo.',
+              'Compatibilizó de manera exitosa su rol de tiempo completo con sus estudios de posgrado en Dublín.'
+            ]
+          : [
+              'Supported leading global clients in improving operations quality and digital media security.',
+              'Empathetically resolved complex issues and managed operational document flows with high accuracy.',
+              'Successfully completed a Master’s degree while working full-time at Accenture.'
+            ]
+      },
+      {
+        company: 'The Stars Group',
+        role: lang === 'es' ? 'Especialista en Resolución de Clientes' : 'Customer Resolution Specialist',
+        period: '2019',
+        achievements: lang === 'es'
+          ? [
+              'Ayudó a optimizar flujos documentales y de verificación de cuentas para jugadores de plataformas globales.',
+              'Recibió un reconocimiento a la mejor productividad en la resolución de casos de verificación compleja.'
+            ]
+          : [
+              'Helped resolve account verification complexities, improving internal operational efficiency.',
+              'Awarded for the top productivity rate in resolving customer verification queues.'
+            ]
+      },
+      {
+        company: 'Centra Convenience Store',
+        role: lang === 'es' ? 'Subgerente de Cadena de Suministro' : 'Supply Chain Assistant Manager',
+        period: '2016 - 2019',
+        achievements: lang === 'es'
+          ? [
+              'Gestionó los flujos de inventario físico y colaboró activamente en la logística y planificación de stock.'
+            ]
+          : [
+              'Managed inventory and supply chain flows, ensuring stock availability and operational planning.'
+            ]
+      }
+    ],
+    education: lang === 'es'
+      ? [
+          'Maestría en Liderazgo y Gestión de Organizaciones (Dublín, Irlanda)',
+          'Maestría en Resolución de Disputas (Dublín, Irlanda)',
+          'Certificado Profesional en Gestión de Proyectos (Agile/Waterfall) — UCD Professional Academy',
+          'Certificado Profesional en Análisis de Negocios Digitales — UCD Professional Academy'
+        ]
+      : [
+          'Master of Science (M.Sc.) in Management & Leadership (Dublin, Ireland)',
+          'Master of Arts (M.A.) in Dispute Resolution (Dublin, Ireland)',
+          'Professional Certificate in Project Management (Agile/Waterfall) — UCD Professional Academy',
+          'Professional Certificate in Digital Business Analysis — UCD Professional Academy'
+        ],
+    skills: ['Business Analysis', 'Project Coordination', 'Agile & Waterfall', 'Process Improvement', 'Stakeholder Management', 'Conflict Resolution', 'Internal Communications'],
+    languages: lang === 'es'
+      ? ['Gujarati & Hindi (Nativo)', 'Inglés (C2 Proficiente)', 'Español (Básico)']
+      : ['Gujarati & Hindi (Native)', 'English (C2 Proficient)', 'Spanish (Basic)']
+  }
+};
+---
+
+<Layout title={`OrangeVibe | ${t('about.title')}`} lang={lang}>
+  
+  <!-- Sleek Floating Back Button -->
+  <div class="w-full flex justify-start">
+    <a 
+      href={`/${lang}/`} 
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/20 hover:bg-white/35 border border-white/40 text-xs font-bold text-gray-900 transition-all select-none shadow-md backdrop-blur-md group"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 group-hover:-translate-x-1 transition-transform">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+      </svg>
+      {t('about.back')}
+    </a>
+  </div>
+
+  <!-- Main Founders Section Container -->
+  <div class="w-full flex flex-col gap-12 mt-4">
+    
+    <div class="text-center max-w-xl mx-auto">
+      <p class="text-[10px] font-black tracking-[0.3em] text-orange-600 uppercase mb-2">
+        {lang === 'es' ? 'CONOCE AL EQUIPO' : 'MEET THE TEAM'}
+      </p>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900 mb-4">
+        {t('about.title')}
+      </h1>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        {lang === 'es' 
+          ? 'La sinergia entre la ingeniería ágil de software y la optimización de procesos de negocio.' 
+          : 'The perfect synergy between agile software engineering and business operations coordination.'}
+      </p>
+    </div>
+
+    <!-- Founders Grid -->
+    <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      
+      {Object.values(founders).map((founder, idx) => (
+        <GlassCard id={idx === 0 ? 'francisco' : 'manthan'} class="p-6 md:p-8 flex flex-col gap-6 bg-white/20 relative">
+          
+          <!-- Profile Header -->
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-gray-300/20">
+            <div class="w-28 h-28 rounded-full overflow-hidden border-4 border-white/60 shadow-lg shrink-0 select-none relative group">
+              <img src={founder.avatar} class="w-full h-full object-cover" alt={founder.name} />
+              <div class="absolute inset-0 bg-gradient-to-t from-orange-500/10 via-transparent to-transparent pointer-events-none"></div>
+            </div>
+            
+            <div class="text-center sm:text-left flex-1">
+              <h2 class="text-2xl font-black text-gray-900 leading-tight mb-1">{founder.name}</h2>
+              <p class="text-xs font-bold text-orange-600 uppercase tracking-wider mb-3">{founder.role}</p>
+              
+              <!-- Mantra -->
+              <p class="text-xs italic text-gray-500 bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/30 inline-block">
+                {founder.mantra}
+              </p>
+
+              {founder.website && (
+                <div class="mt-3">
+                  <a 
+                    href={`https://${founder.website}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="text-xs text-orange-600 hover:text-orange-700 font-bold underline underline-offset-4 flex items-center justify-center sm:justify-start gap-1"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253m0 0L3 12" />
+                    </svg>
+                    {founder.website}
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Professional Summary -->
+          <div class="flex flex-col gap-2">
+            <h3 class="text-xs font-black text-gray-500 uppercase tracking-widest">{t('about.summary')}</h3>
+            <p class="text-sm text-gray-700 leading-relaxed bg-white/10 p-4 rounded-2xl border border-white/20">
+              {founder.summary}
+            </p>
+          </div>
+
+          <!-- Timeline Experience -->
+          <div class="flex flex-col gap-3">
+            <h3 class="text-xs font-black text-gray-500 uppercase tracking-widest mb-1">{t('about.experience')}</h3>
+            <div class="flex flex-col gap-4">
+              {founder.experience.map((exp) => (
+                <div class="relative pl-5 border-l-2 border-orange-200/50">
+                  <!-- Timeline dot -->
+                  <div class="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-orange-500 border border-white"></div>
+                  
+                  <div class="flex flex-wrap justify-between items-baseline mb-1">
+                    <h4 class="text-sm font-bold text-gray-900">{exp.role}</h4>
+                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">{exp.period}</span>
+                  </div>
+                  <p class="text-[11px] font-bold text-orange-600 mb-2">{exp.company}</p>
+                  
+                  <ul class="list-disc list-outside pl-4 space-y-1">
+                    {exp.achievements.map((ach) => (
+                      <li class="text-xs text-gray-600 leading-relaxed">{ach}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="flex flex-col gap-2">
+            <h3 class="text-xs font-black text-gray-500 uppercase tracking-widest">{t('about.education')}</h3>
+            <ul class="space-y-2 bg-white/10 p-4 rounded-2xl border border-white/20">
+              {founder.education.map((edu) => (
+                <li class="text-xs text-gray-600 flex items-start gap-2">
+                  <span class="text-orange-500 mt-0.5">•</span>
+                  <span>{edu}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Skills tags -->
+          <div class="flex flex-col gap-2.5">
+            <h3 class="text-xs font-black text-gray-500 uppercase tracking-widest">{t('about.skills')}</h3>
+            <div class="flex flex-wrap gap-2">
+              {founder.skills.map((skill) => (
+                <span class="px-3 py-1 text-[10px] font-bold text-gray-700 bg-white/30 border border-white/40 rounded-full shadow-sm hover:bg-orange-500/10 hover:border-orange-500/30 transition-all">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Languages -->
+          <div class="flex flex-col gap-2">
+            <h3 class="text-xs font-black text-gray-500 uppercase tracking-widest">{t('about.languages')}</h3>
+            <div class="flex flex-wrap gap-3">
+              {founder.languages.map((langText) => (
+                <span class="text-xs text-gray-600 flex items-center gap-1.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 text-orange-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 006-.371m0 0c1.12 0 2.233-.038 3.334-.114M9 5.25V3m3.334 2.136C11.13 8.37 9.25 11.235 7.5 13.166m-1.001-1.07c.01-.016.021-.033.03-.049m0 0C8.784 8.986 10.7 5.922 12.334 3M9 5.25a48.474 48.474 0 01-6-.371m0 0a48.456 48.456 0 016-.388m0 0c1.677 0 3.344.061 5 .18" />
+                  </svg>
+                  {langText}
+                </span>
+              ))}
+            </div>
+          </div>
+
+        </GlassCard>
+      ))}
+
+    </div>
+
+  </div>
+
+</Layout>
